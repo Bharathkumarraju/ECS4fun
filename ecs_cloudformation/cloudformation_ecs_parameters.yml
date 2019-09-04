@@ -1,0 +1,27 @@
+AsgMaxSize    	2	-
+DeviceName	    /dev/xvdcz	-
+EbsVolumeSize	22	-
+EbsVolumeType	gp2	-
+EcsAmiId	    ami-003cb73efe1eb03cc	-
+EcsClusterName	    demo	-
+EcsEndpoint	-	    -
+EcsInstanceType	    t2.small	-
+IamRoleInstanceProfile	    arn:aws:iam::172586632398:instance-profile/ecsInstanceRole	-
+IamSpotFleetRoleArn	        -	-
+IsWindows	    false	-
+KeyName	      hanumans	-
+SecurityGroupId	-	    -
+SecurityIngressCidrIp	    0.0.0.0/0	-
+SecurityIngressFromPort	    80	-
+SecurityIngressToPort	    80	-
+SpotAllocationStrategy	    diversified	-
+SpotPrice	    -	-
+SubnetCidr1	    10.0.0.0/24	-
+SubnetCidr2	    10.0.1.0/24	-
+SubnetCidr3	-	    -
+SubnetIds	subnet-074c7a41,subnet-54448733,subnet-a036c0e9	-
+UseSpot	false	-
+UserData	    #!/bin/bash echo ECS_CLUSTER=demo >> /etc/ecs/ecs.config;echo ECS_BACKEND_HOST= >> /etc/ecs/ecs.config;	-
+VpcAvailabilityZones	    ap-southeast-1a,ap-southeast-1b,ap-southeast-1c	-
+VpcCidr	    10.0.0.0/16	-
+VpcId	    vpc-83c5f8e7	-

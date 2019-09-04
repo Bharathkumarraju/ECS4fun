@@ -1,2 +1,2 @@
-# ECS4fun
-ecs for fun
+# allaboutecs
+ecs and its components...ecs-agent, task definitions, service discovery

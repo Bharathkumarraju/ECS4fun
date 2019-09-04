@@ -1,0 +1,5 @@
+amazon-linux2-ami:
+  Image: ami-05357ea4dad5e2cf4
+
+amazon-linux1-ami:
+  Image: ami-003cb73efe1eb03cc
