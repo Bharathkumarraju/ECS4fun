@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-name = os.environ['LOGNAME']
+name = os.environ['USER']
 
 @app.route("/awsecs")
 
