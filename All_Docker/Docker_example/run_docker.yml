@@ -24,3 +24,19 @@ docker  run -d -e NAME="raju" --name bkpython --net aws-ecs -p 80:8080 123455657
       local               56d3f0332ed06a6307adf62fbe9c37b70be909fa381bf04ba60b12dcc80f88c3
       local               aws-ecs-volume
     [root@ip-172-31-1-112 _data]#
+
+
+[root@ip-172-31-1-112 ec2-user]# mkdir contianer-volume
+[root@ip-172-31-1-112 ec2-user]# mv index.html contianer-volume/
+[root@ip-172-31-1-112 ec2-user]# ls -rtlh
+-rw-r--r-- 1 root root  169 Sep 12 08:37 Dockerfile
+drwxr-xr-x 2 root root 4.0K Sep 12 08:38 contianer-volume
+[root@ip-172-31-1-112 ec2-user]# vim Dockerfile
+[root@ip-172-31-1-112 ec2-user]# docker run -d --name web -p 8085:80 -v /home/ec2-user/contianer-volume/:/var/www/html bkapache:v2
+eb20fc2928f93dc253b2b17997ff654d8bfe6eae3d4727e878c79725e24ebc15
+[root@ip-172-31-1-112 ec2-user]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+eb20fc2928f9        bkapache:v2         "/usr/sbin/httpd -D …"   4 seconds ago       Up 2 seconds        0.0.0.0:8085->80/tcp   web
+5fd72ea729b0        bkapache:v2         "/usr/sbin/httpd -D …"   7 minutes ago       Up 7 minutes        0.0.0.0:8087->80/tcp   bkrajuapache3
+787ef5c7b1ec        bkapache:v1         "/usr/sbin/httpd -D …"   12 minutes ago      Up 12 minutes       0.0.0.0:80->80/tcp     bkrajuapache
+[root@ip-172-31-1-112 ec2-user]#
