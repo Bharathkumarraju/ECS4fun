@@ -3,13 +3,13 @@ import os
 
 app = Flask(__name__)
 
-name = os.environ['USER']
+name = os.name
 
 @app.route("/awsecs")
 
 def awsecs():
-    return "Hi " + name + " ... I am running on pythos flask"
+    return "Hi I am running on " + name + " with pythons flask"
 
 
 if (__name__) == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
