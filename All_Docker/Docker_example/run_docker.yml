@@ -40,3 +40,44 @@ eb20fc2928f9        bkapache:v2         "/usr/sbin/httpd -D …"   4 seconds ago
 5fd72ea729b0        bkapache:v2         "/usr/sbin/httpd -D …"   7 minutes ago       Up 7 minutes        0.0.0.0:8087->80/tcp   bkrajuapache3
 787ef5c7b1ec        bkapache:v1         "/usr/sbin/httpd -D …"   12 minutes ago      Up 12 minutes       0.0.0.0:80->80/tcp     bkrajuapache
 [root@ip-172-31-1-112 ec2-user]#
+
+
+
+[root@ip-172-31-1-112 ec2-user]# docker network create --attachable -d bridge --subnet=10.20.0.0/16 aws-ecs
+ a53e4c369fe0b717d076f58e8bc23c7e8cf348e0651f9b6f93a5cc5eaca249ed
+[root@ip-172-31-1-112 ec2-user]# docker run -d -e MYSQL_ROOT_PASSWORD=abcd1234 --name empdb --net aws-ecs -p 3306:3306 -v /home/ec2-user/mysql-db-store/:/var/lib/mysql mysql:latest
+
+[root@ip-172-31-1-112 ec2-user]# docker run -d -e MYSQL_ROOT_PASSWORD=abcd1234 --name empdb1 --net aws-ecs -p 3306:3306 -v /home/ec2-user/mysql-db-store/:/var/lib/mysql mysql:latest
+  3e242ad35907187886365a1a8f3bf0195cc05151b929e0d0e37031eba1caf10d
+[root@ip-172-31-1-112 ec2-user]#
+
+
+
+-----------------:
+
+
+ [root@ip-172-31-1-112 GetEmp]# docker ps
+    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                               NAMES
+    3985c1ee87f7        getemp:latest       "python2 GetEmp.py"      5 seconds ago       Up 3 seconds        0.0.0.0:8080->8080/tcp              getemp
+    026134b14257        addemp:latest       "python2 AddEmp.py"      2 minutes ago       Up 2 minutes        0.0.0.0:80->80/tcp                  addemp
+    3e242ad35907        mysql:latest        "docker-entrypoint.s…"   38 minutes ago      Up 38 minutes       0.0.0.0:3306->3306/tcp, 33060/tcp   empdb1
+
+ [root@ip-172-31-1-112 GetEmp]# history
+
+    8  docker image build -t addemp:latest ./
+    9  docker images
+    10  docker ps
+    11  docker run -d -e DBHOST="empdb1" -e DBPORT="3306" -e DBUSER="root" -e DBPWD="abcd1234" -e DATABASE="awsecs" --name addemp --net aws-ecs -p 80:80 addemp:latest
+    12  docker ps
+    13  docker network ls
+    14  cd ../GetEmp/
+    15  docker image build -t getemp:latest ./
+    16  docker images
+    17  docker run -d -e DBHOST="empdb1" -e DBPORT="3306" -e DBUSER="root" -e DBPWD="abcd1234" -e DATABASE="awsecs" --name getemp --net aws-ecs -p 8080:8080  getemp:latest
+    18  docker ps
+    19  history
+  [root@ip-172-31-1-112 GetEmp]#
+
+
+  ---------------:
+
