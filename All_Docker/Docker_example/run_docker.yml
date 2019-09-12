@@ -14,4 +14,13 @@ docker run  -p 8089:8080 --name flask1 12345678910.dkr.ecr.ap-southeast-1.amazon
 docker network create --attachable -d bridge --subnet=10.20.0.0/16 aws-ecs
 docker network ls
 docker network inspect aws-ecs
-docker  run -d -e NAME="raju" --name bkpython --net aws-ecs -p 80:8080 436712201231.dkr.ecr.ap-southeast-1.amazonaws.com/cloud_sre-ecr:bharathflask-0.0.3
+docker  run -d -e NAME="raju" --name bkpython --net aws-ecs -p 80:8080 12345565756.dkr.ecr.ap-southeast-1.amazonaws.com/cloud_sre-ecr:bharathflask-0.0.3
+
+  [root@ip-172-31-1-112 _data]# docker volume create -d local aws-ecs-volume
+     aws-ecs-volume
+   [root@ip-172-31-1-112 _data]# docker volume ls
+      DRIVER              VOLUME NAME
+      local               1ae64be0f736b6299a81bd43dafb1ea26e7d4185a35e917d26f9f8950eb0b5e7
+      local               56d3f0332ed06a6307adf62fbe9c37b70be909fa381bf04ba60b12dcc80f88c3
+      local               aws-ecs-volume
+    [root@ip-172-31-1-112 _data]#
