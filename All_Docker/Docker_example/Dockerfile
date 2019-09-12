@@ -10,4 +10,4 @@ COPY ./first-python-webpage.py /python-app/first-python-webpage.py
 
 EXPOSE 8080
 
-ENTRYPOINT ["python3", "first-python-webpage.py"]
+ENTRYPOINT ["python", "first-python-webpage.py"]
